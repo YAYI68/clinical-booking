@@ -10,7 +10,7 @@ A small app for booking clinic appointments. Patients pick a free slot, book it,
 | | Local | Production |
 | --- | --- | --- |
 | Web app | http://localhost:5173 | _add after deploy_ |
-| API docs (Swagger) | http://localhost:3000/docs | _add after deploy_ |
+| API docs (Swagger) | http://localhost:3000/docs | https://clinical-booking-meid.onrender.com/docs |
 
 In Swagger, click **Authorize** and paste your `API_KEY` to try requests.
 
