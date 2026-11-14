@@ -15,7 +15,8 @@ WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY package.json ./
-RUN mkdir -p /data && chown node:node /data
+# Writable by the non-root user whether DB_PATH is /data/... or ./data/...
+RUN mkdir -p /data /app/data && chown node:node /data /app/data
 USER node
 EXPOSE 3000
 CMD ["node", "dist/main.js"]
