@@ -22,9 +22,17 @@ for (let added = 0; added < 7; ) {
   });
 }
 
-const res = await fetch(`${API_URL}/reset`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
-  body: JSON.stringify({ slots }),
-});
-console.log(res.status, await res.text());
+console.log(`Seeding ${slots.length} slots → ${API_URL}`);
+try {
+  const res = await fetch(`${API_URL}/reset`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+    body: JSON.stringify({ slots }),
+  });
+  console.log(res.status, await res.text());
+  if (res.status === 401) console.log('The API key does not match the one set on the server.');
+} catch (err) {
+  console.error(`Could not reach ${API_URL} (${err.cause?.code ?? err.message}).`);
+  console.error('Set API_URL, e.g. API_URL=https://your-service.onrender.com npm run seed');
+  process.exitCode = 1;
+}
