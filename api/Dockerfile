@@ -10,7 +10,7 @@ RUN npm run build && npm prune --omit=dev
 
 # ---- run ----
 FROM node:22-bookworm-slim
-ENV NODE_ENV=production PORT=3000 DB_PATH=/data/clinic.db
+ENV NODE_ENV=production PORT=3000 DB_PATH=/data/clinic.db SEED_ON_START=true
 WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist

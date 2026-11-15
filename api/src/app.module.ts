@@ -10,6 +10,7 @@ import { ErrorFilter } from './common/error.filter';
 import { RequestLoggerMiddleware } from './common/request-logger.middleware';
 import { APP_CONFIG, loadConfig } from './config';
 import { DatabaseService } from './database/database.service';
+import { DemoSeedService } from './database/demo-seed.service';
 import { HealthController } from './health.controller';
 import { SlotsController } from './slots/slots.controller';
 import { SlotsService } from './slots/slots.service';
@@ -19,6 +20,7 @@ import { SlotsService } from './slots/slots.service';
   providers: [
     { provide: APP_CONFIG, useFactory: () => loadConfig() },
     DatabaseService,
+    DemoSeedService,
     SlotsService,
     BookingsService,
     IdempotencyStore,

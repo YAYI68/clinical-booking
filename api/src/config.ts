@@ -6,6 +6,7 @@ export interface AppConfig {
   rateLimit: { max: number; windowMs: number };
   idempotencyTtlMs: number;
   logRequests: boolean;
+  seedOnStart: boolean;
 }
 
 export const APP_CONFIG = Symbol('APP_CONFIG');
@@ -38,5 +39,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     },
     idempotencyTtlMs: positiveInt(env, 'IDEMPOTENCY_TTL_MS', 24 * 60 * 60 * 1000),
     logRequests: env.NODE_ENV !== 'test',
+    seedOnStart: env.SEED_ON_START === 'true',
   };
 }
